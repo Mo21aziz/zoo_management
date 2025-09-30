@@ -1,3 +1,5 @@
+package tn.esprit.gestionzoo.entities;
+
 class Zoo {
     Animal[] animals;
     String name;
@@ -26,9 +28,13 @@ class Zoo {
 
     public boolean addAnimal(Animal animal) {
         if (animal == null) return false;
-        if (animalCount >= nbrCages) return false;
+        if (isZooFull()) {
+            System.out.println("tn.esprit.gestionzoo.entities.Zoo plein ! Impossible d’ajouter " + animal.getName());
+            return false;
+        }
+        else{if (animalCount >= nbrCages) return false;
         for (int i = 0; i < animals.length; i++) {
-            if (animals[i] != null && (animals[i].name) ==animal.name) {
+            if (animals[i] != null && (animals[i].getName()) == animal.getName()) {
                 return false;
             }
         }
@@ -40,12 +46,12 @@ class Zoo {
             }
         }
         return false;
-    }
+    }}
 
     public int searchAnimal(Animal animal) {
         if (animal == null){return -1;}
         for (int i = 0; i < this.animals.length; i++) {
-            if (animals[i]!=null && (animals[i].name == animal.name)){
+            if (animals[i]!=null && (animals[i].getName() == animal.getName())){
                 return i;
             }
         }
@@ -56,7 +62,7 @@ class Zoo {
     public boolean removeAnimal(Animal animal) {
         if (animal == null){return false;}
         for (int i = 0; i < this.animals.length; i++) {
-            if (animals[i]!=null && (animals[i].name == animal.name)){
+            if (animals[i]!=null && (animals[i].getName() == animal.getName())){
                 this.animals[i] = null;
                 animalCount--;
                 return true;
@@ -80,16 +86,16 @@ class Zoo {
 
 
     public void displayZoo(){
-        System.out.println("Zoo name: "+name);
-        System.out.println("Zoo city: "+city);
-        System.out.println("Zoo nbr cages: "+nbrCages);
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo name: "+name);
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo city: "+city);
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo nbr cages: "+nbrCages);
     }
 
 
 
     @Override
     public String toString() {
-        return "Zoo{name='" + name + "'," +
+        return "tn.esprit.gestionzoo.entities.Zoo{name='" + name + "'," +
                 " city='" + city + "', cages=" +
                 nbrCages + ", animaux=" + animalCount + "}";
     }
