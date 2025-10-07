@@ -2,6 +2,10 @@ package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.Animal;
 import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Aquatic;
+import tn.esprit.gestionzoo.entities.Terrestre;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin;
 
 import java.util.Scanner;
 
@@ -18,9 +22,9 @@ public class zooManagement {
         nbrCages = input.nextInt();
         System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName+ " nbr Cages: "+nbrCages);
 
-        Animal dog = new Animal("doberman", "daleji", 11, true);
-        Animal cat = new Animal("gatt", "bechbech", 3, true);
-        Animal bird = new Animal("boumzayen", "ziwziw", 2, false);
+        Animal dog = new Animal(11, "daleji", "doberman", true);
+        Animal cat = new Animal(3, "bechbech", "gatt", true);
+        Animal bird = new Animal(2, "ziwziw", "boumzayen", false);
         Zoo myZoo = new Zoo("Myzoo", "tunis", 30);
         myZoo.addAnimal(dog);
         System.out.println("tn.esprit.gestionzoo.entities.Zoo Name"+myZoo.name);
@@ -43,7 +47,13 @@ public class zooManagement {
 
         int index = myZoo2.searchAnimal(dog);
         System.out.println(index);
-
-
+        Aquatic a = new Aquatic("9erch","hiroshima nakazaki");
+        Terrestre t = new Terrestre("wral",2);
+        Dolphin d = new Dolphin("7amma",4);
+        Penguin p = new Penguin("yassin",50);
+        System.out.println(a);
+        System.out.println(t);
+        System.out.println(d);
+        System.out.println(p);
     }
 }

@@ -6,14 +6,17 @@ public class Animal {
     private String family;
     private boolean isMammal;
 
-    Animal(String family, String name, int age, boolean isMammal) {
+    Animal(String family) {
         this.family = family;
         this.name = name;
         this.age = age;
         this.isMammal = isMammal;
     }
 
-    Animal() {
+    public Animal(int age, String name, String family, boolean isMammal) {
+    }
+
+    public Animal() {
     }
 
     public void displayAnimal() {
