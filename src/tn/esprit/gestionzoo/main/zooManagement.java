@@ -1,17 +1,10 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
-import tn.esprit.gestionzoo.entities.Aquatic;
-import tn.esprit.gestionzoo.entities.Terrestre;
-import tn.esprit.gestionzoo.entities.Dolphin;
-import tn.esprit.gestionzoo.entities.Penguin;
+import tn.esprit.gestionzoo.entities.*;
 
-import java.util.Scanner;
-
-public class zooManagement {
+public class ZooManagement {
     public static void main(String[] args) {
-        int nbrCages=20;
+       /* int nbrCages=20;
         String ZooName= "My tn.esprit.gestionzoo.entities.Zoo";
         System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName + "nbr Cages: "+nbrCages);
         Scanner input = new Scanner(System.in) ;
@@ -20,40 +13,69 @@ public class zooManagement {
 
         System.out.println("insert zoo age");
         nbrCages = input.nextInt();
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName+ " nbr Cages: "+nbrCages);
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName+ " nbr Cages: "+nbrCages);*/
 
-        Animal dog = new Animal(11, "daleji", "doberman", true);
-        Animal cat = new Animal(3, "bechbech", "gatt", true);
-        Animal bird = new Animal(2, "ziwziw", "boumzayen", false);
+        /*Animal dog = new Animal("doberman", "daleji", 11, true);
+        Animal cat = new Animal("gatt", "bechbech", 3, true);
+        Animal bird = new Animal("boumzayen", "ziwziw", 2, false);
         Zoo myZoo = new Zoo("Myzoo", "tunis", 30);
-        myZoo.addAnimal(dog);
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo Name"+myZoo.name);
+        myZoo.addAnimal(dog);*/
+        /*System.out.println("tn.esprit.gestionzoo.entities.Zoo Name"+myZoo.name);
         System.out.println(myZoo);
-        System.out.println(myZoo.toString());
+        System.out.println(myZoo.toString());*/
 
 
-        Zoo myZoo2 = new Zoo("Belvedaire", "tunis", 3);
+        /*Zoo myZoo2 = new Zoo("Belvedaire", "tunis", 3);
         myZoo2.addAnimal(dog);
         myZoo2.addAnimal(cat);
-        myZoo2.addAnimal(dog);
+        myZoo2.addAnimal(dog);*/
 
-        myZoo2.removeAnimal(dog);
+        /*myZoo2.removeAnimal(dog);*/
 
 
-        System.out.println(Zoo.comparerZoo(myZoo, myZoo2).name);
+        /*System.out.println(Zoo.comparerZoo(myZoo, myZoo2).getName());
         myZoo2.displayAnimals();
         myZoo2.displayZoo();
         System.out.println(myZoo2.isZooFull());
 
         int index = myZoo2.searchAnimal(dog);
-        System.out.println(index);
-        Aquatic a = new Aquatic("9erch","hiroshima nakazaki");
-        Terrestre t = new Terrestre("wral",2);
-        Dolphin d = new Dolphin("7amma",4);
-        Penguin p = new Penguin("yassin",50);
-        System.out.println(a);
-        System.out.println(t);
-        System.out.println(d);
-        System.out.println(p);
+        System.out.println(myZoo2);*/
+
+
+
+        Dolphin dolphin = new Dolphin("dalfoun", "battah", 25);
+        Penguin penguin = new Penguin("batri9", 15);
+        Penguin penguin2 = new Penguin("batri9_2", 21);
+        Penguin penguin3 = new Penguin("batri9_3", 25);
+
+
+        System.out.println(dolphin.toString());
+        System.out.println(penguin.toString());
+        Aquatic aquatic = new Aquatic("ssss");
+
+        aquatic.swim();
+        dolphin.swim();
+        penguin.swim();
+
+        Zoo aquaZoo = new Zoo("belvedaire","tunis",15);
+        aquaZoo.addAquaticAnimal(dolphin);
+        aquaZoo.addAquaticAnimal(penguin);
+        aquaZoo.addAquaticAnimal(penguin2);
+        aquaZoo.addAquaticAnimal(penguin3);
+        float maximum=aquaZoo.maxPenguinSwimmingDepth();
+        System.out.println(maximum);
+        aquaZoo.displayNumberByType();
+
+        Aquatic a1 = new Aquatic("Dolphin", 5, "Ocean");
+        Aquatic a2 = new Aquatic("Dolphin", 5, "Ocean");
+
+
+
+        System.out.println(a1.equals(a2));
+
+
+
+
+
     }
 }

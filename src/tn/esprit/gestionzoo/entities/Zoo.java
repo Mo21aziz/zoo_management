@@ -2,17 +2,43 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
     Animal[] animals;
-    public String name;
-    String city;
+    private String name;
+    private String city;
     static final int nbrCages =25;
-    int animalCount;
-
+    private int animalCount;
+    private Aquatic[] aquaticAnimals = new Aquatic[10];
+    private int nbrAquaticAnimals;
     public Zoo(String name, String city, int nbrCages) {
         this.name = name;
         this.city = city;
         this.animals = new Animal[nbrCages];
         this.animalCount = 0;
 
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        if (name == ""){
+            System.out.println("Name is empty");
+        }
+        this.name = name;
+    }
+    public String getCity() {
+        return city;
+    }
+    public void setCity(String city) {
+        if (city == ""){
+            System.out.println("City is empty");
+        }
+        this.city = city;
+    }
+    public int getAnimalCount() {
+        return animalCount;
+    }
+    public void setAnimalCount(int animalCount) {
+        this.animalCount = animalCount;
     }
 
     public void displayAnimals() {
@@ -28,25 +54,23 @@ public class Zoo {
 
     public boolean addAnimal(Animal animal) {
         if (animal == null) return false;
-        if (isZooFull()) {
-            System.out.println("tn.esprit.gestionzoo.entities.Zoo plein ! Impossible d’ajouter " + animal.getName());
+        if (isZooFull()) return false;
+        else{
+            for (int i = 0; i < animals.length; i++) {
+                if (animals[i] != null && (animals[i].getName()) ==animal.getName()) {
+                    return false;
+                }
+            }
+            for (int i = 0; i < animals.length; i++) {
+                if (animals[i] == null) {
+                    animals[i] = animal;
+                    animalCount++;
+                    return true;
+                }
+            }
             return false;
         }
-        else{if (animalCount >= nbrCages) return false;
-        for (int i = 0; i < animals.length; i++) {
-            if (animals[i] != null && (animals[i].getName()) == animal.getName()) {
-                return false;
-            }
-        }
-        for (int i = 0; i < animals.length; i++) {
-            if (animals[i] == null) {
-                animals[i] = animal;
-                animalCount++;
-                return true;
-            }
-        }
-        return false;
-    }}
+    }
 
     public int searchAnimal(Animal animal) {
         if (animal == null){return -1;}
@@ -86,16 +110,56 @@ public class Zoo {
 
 
     public void displayZoo(){
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo name: "+name);
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo city: "+city);
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo nbr cages: "+nbrCages);
+        System.out.println("Zoo name: "+name);
+        System.out.println("Zoo city: "+city);
+        System.out.println("Zoo nbr cages: "+nbrCages);
+    }
+
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (nbrAquaticAnimals>=aquaticAnimals.length){
+            System.out.println("aquatic animals is full");
+        }
+        else {
+            aquaticAnimals[nbrAquaticAnimals] = aquatic;
+            nbrAquaticAnimals++;
+            System.out.println("aquatic animal added successfully");
+        }
+    }
+
+
+    public float maxPenguinSwimmingDepth(){
+        float max = 0;
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Penguin) {
+                Penguin p = (Penguin) aquaticAnimals[i];
+                if (p.getSwimmingDepth() > max) {
+                    max = p.getSwimmingDepth();
+                }
+            }
+        }
+        return max;
+    }
+
+    public void displayNumberByType() {
+        int countDolphins = 0;
+        int countPenguins = 0;
+
+        for (int i = 0; i < nbrAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Dolphin)
+                countDolphins++;
+            else if (aquaticAnimals[i] instanceof Penguin)
+                countPenguins++;
+        }
+
+        System.out.println("Nombre de dauphins : " + countDolphins);
+        System.out.println("Nombre de pingouins : " + countPenguins);
     }
 
 
 
     @Override
     public String toString() {
-        return "tn.esprit.gestionzoo.entities.Zoo{name='" + name + "'," +
+        return "Zoo{name='" + name + "'," +
                 " city='" + city + "', cages=" +
                 nbrCages + ", animaux=" + animalCount + "}";
     }
