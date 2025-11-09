@@ -1,81 +1,114 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.*;
+import java.util.Scanner;
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Aquatic;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin;
+import tn.esprit.gestionzoo.entities.Terrestrial;
 
-public class ZooManagement {
+public class zooManagement {
     public static void main(String[] args) {
-       /* int nbrCages=20;
-        String ZooName= "My tn.esprit.gestionzoo.entities.Zoo";
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName + "nbr Cages: "+nbrCages);
-        Scanner input = new Scanner(System.in) ;
-        System.out.println("insert zoo name");
-        ZooName = input.nextLine();
+        System.out.println("===== Bienvenue dans le système de gestion du Zoo =====");
 
-        System.out.println("insert zoo age");
-        nbrCages = input.nextInt();
-        System.out.println("tn.esprit.gestionzoo.entities.Zoo Name: "+ZooName+ " nbr Cages: "+nbrCages);*/
+        Scanner input = new Scanner(System.in);
+        System.out.print("Insérer le nom du zoo : ");
+        String zooName = input.nextLine();
 
-        /*Animal dog = new Animal("doberman", "daleji", 11, true);
-        Animal cat = new Animal("gatt", "bechbech", 3, true);
-        Animal bird = new Animal("boumzayen", "ziwziw", 2, false);
-        Zoo myZoo = new Zoo("Myzoo", "tunis", 30);
-        myZoo.addAnimal(dog);*/
-        /*System.out.println("tn.esprit.gestionzoo.entities.Zoo Name"+myZoo.name);
-        System.out.println(myZoo);
-        System.out.println(myZoo.toString());*/
+        System.out.print("Insérer la ville : ");
+        String city = input.nextLine();
 
+        Zoo myZoo = new Zoo(zooName, city);
+        myZoo.displayZoo();
 
-        /*Zoo myZoo2 = new Zoo("Belvedaire", "tunis", 3);
-        myZoo2.addAnimal(dog);
-        myZoo2.addAnimal(cat);
-        myZoo2.addAnimal(dog);*/
+        // ======================
+        // Tests avec Animal & Zoo
+        // ======================
+        Animal lyon = new Animal("lyon", "Simba", 14, true);
+        Animal tiger = new Animal("tiger", "Bagira", 10, true);
+        Animal zebra = new Animal("zebra", "Marty", 6, true);
+        Animal simba2 = new Animal("lyon", "Simba", 5, true); // même nom (test unicité)
 
-        /*myZoo2.removeAnimal(dog);*/
+        System.out.println("\n--- Ajouts ---");
+        System.out.println("Ajout Simba: " + myZoo.addAnimal(lyon));
+        System.out.println("Ajout Bagira: " + myZoo.addAnimal(tiger));
+        System.out.println("Ajout Marty: " + myZoo.addAnimal(zebra));
+        System.out.println("Ajout Simba (doublon nom): " + myZoo.addAnimal(simba2));
 
+        myZoo.displayAnimals();
+        System.out.println("Zoo plein ? " + myZoo.isZooFull());
 
-        /*System.out.println(Zoo.comparerZoo(myZoo, myZoo2).getName());
-        myZoo2.displayAnimals();
-        myZoo2.displayZoo();
-        System.out.println(myZoo2.isZooFull());
+        System.out.println("\n--- Suppression de 'Marty' ---");
+        System.out.println("remove(Marty) = " + myZoo.removeAnimal(zebra));
+        myZoo.displayAnimals();
 
-        int index = myZoo2.searchAnimal(dog);
-        System.out.println(myZoo2);*/
+        // ==========================
+        // Prosit 5 – Instructions 20 à 24
+        // ==========================
+        System.out.println("\n===== Prosit 5 : Animaux spécialisés =====");
 
+        // Création d’objets spécifiques
+        Aquatic aq = new Aquatic("Sea Turtle", 40, false, "océan") {
+            @Override
+            public void swim() {
+                System.out.println("This aquatic animal is swimming.");
+            }
+        };
+        Terrestrial te = new Terrestrial("Lion", 8, true, 4);
+        Dolphin d1 = new Dolphin("Flipper", 12, 9.5f, "mer");
+        Penguin p1 = new Penguin("Skipper", 5, 120.0f, "antarctique");
 
+        // Affichage (toString redéfinis)
+        System.out.println("\n=== Affichage des animaux ===");
+        System.out.println(aq);
+        System.out.println(te);
+        System.out.println(d1);
+        System.out.println(p1);
 
-        Dolphin dolphin = new Dolphin("dalfoun", "battah", 25);
-        Penguin penguin = new Penguin("batri9", 15);
-        Penguin penguin2 = new Penguin("batri9_2", 21);
-        Penguin penguin3 = new Penguin("batri9_3", 25);
+        // Test de la méthode swim()
+        System.out.println("\n=== Test de swim() ===");
+        aq.swim();   // générique (Aquatic)
+        d1.swim();   // redéfini (Dolphin)
+        p1.swim();   // redéfini (Penguin)
 
+        // Ajout au zoo
+        System.out.println("\n=== Ajout des nouveaux animaux dans le zoo ===");
+        myZoo.addAnimal(aq);
+        myZoo.addAnimal(te);
+        myZoo.addAnimal(d1);
+        myZoo.addAnimal(p1);
 
-        System.out.println(dolphin.toString());
-        System.out.println(penguin.toString());
-        Aquatic aquatic = new Aquatic("ssss");
+        myZoo.displayAnimals();
 
-        aquatic.swim();
-        dolphin.swim();
-        penguin.swim();
+        // ==========================
+        // Prosit 6 – Instructions 25 à 31
+        // ==========================
+        System.out.println("\n===== Prosit 6 : Gestion des animaux aquatiques =====");
 
-        Zoo aquaZoo = new Zoo("belvedaire","tunis",15);
-        aquaZoo.addAquaticAnimal(dolphin);
-        aquaZoo.addAquaticAnimal(penguin);
-        aquaZoo.addAquaticAnimal(penguin2);
-        aquaZoo.addAquaticAnimal(penguin3);
-        float maximum=aquaZoo.maxPenguinSwimmingDepth();
-        System.out.println(maximum);
-        aquaZoo.displayNumberByType();
+        // Ajout des animaux aquatiques dans le tableau spécial
+        System.out.println("\n=== Ajout des animaux aquatiques dans le tableau ===");
+        myZoo.addAquaticAnimal(aq);
+        myZoo.addAquaticAnimal(d1);
+        myZoo.addAquaticAnimal(p1);
 
-        Aquatic a1 = new Aquatic("Dolphin", 5, "Ocean");
-        Aquatic a2 = new Aquatic("Dolphin", 5, "Ocean");
+        // Test de swim() sur tous les aquatiques
+        myZoo.makeAquaticAnimalsSwim();
 
+        // Profondeur max des pingouins
+        System.out.println("\nProfondeur maximale des pingouins : " + myZoo.maxPenguinSwimmingDepth());
 
+        // Affichage du nombre de dauphins et pingouins
+        myZoo.displayNumberOfAquaticsByType();
 
-        System.out.println(a1.equals(a2));
+        // Comparaison entre deux zoos
+        Zoo otherZoo = new Zoo("Belvédère", "Tunis");
+        otherZoo.addAnimal(new Animal("elephant", "Dumbo", 5, true));
 
+        Zoo biggestZoo = Zoo.comparerZoo(myZoo, otherZoo);
+        System.out.println("\nLe zoo avec le plus d'animaux est : " + biggestZoo.getName());
 
-
-
-
+        input.close();
+        System.out.println("\n===== Fin du programme ✅ =====");
     }
 }
