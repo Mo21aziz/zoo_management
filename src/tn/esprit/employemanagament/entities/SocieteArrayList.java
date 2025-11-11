@@ -1,4 +1,4 @@
-package tn.esprit.gestionzoo.entities;
+package tn.esprit.employemanagament.entities;
 
 
 import java.util.ArrayList;
